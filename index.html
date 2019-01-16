@@ -2,6 +2,7 @@
 	<head>
 		<title>homepage</title>
 		<link rel="stylesheet" href="/src/homepage.css" />
+		<script src="/src/homepage.js"></script>
 	</head>
 	<body>
 		<h1>Flower Catlog</h1>
@@ -13,7 +14,11 @@
 					<li><a href="localhost:8080/src/homepage.html">Ageratum</a></li>
 				</ul>
 				<a href="localhost:8080/src/homepage.html">Guest Book</a>
-				<img src="/src/images/animated-flower-image-0021.gif" />
+				<img
+					id="jar"
+					src="/src/images/animated-flower-image-0021.gif"
+					onclick="hideImage()"
+				/>
 			</div>
 		</div>
 	</body>
