@@ -1,12 +1,11 @@
 h1 {
   text-align: center;
-  border-bottom: black 3px solid;
+  border-bottom: black 1px solid;
   color: #dca94b
 }
 
-.figure {
+.main {
   display:flex;
-  float: left;
 }
 
 .list {
