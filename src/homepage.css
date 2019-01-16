@@ -5,16 +5,12 @@ h1 {
 }
 
 .figure {
-  position: relative;
   display:flex;
+  float: left;
 }
 
 .list {
   margin-top: 300px
-}
-
-.leftImage {
-  text-align: right; 
 }
 
 .mainImage{
