@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+  border-bottom: black 3px solid;
+  color: #dca94b
+}
+
+.figure {
+  position: relative;
+  display:flex;
+}
+
+.list {
+  margin-top: 300px
+}
+
+.leftImage {
+  text-align: right; 
+}
+
+.mainImage{
+  border:solid black 1px
+}
