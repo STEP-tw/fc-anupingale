@@ -7,12 +7,14 @@ const send = function(res, statusCode, content) {
 };
 
 const app = (req, res) => {
+	let statusCode = 404;
+	let message = "PAGE NOT FOUND";
 	readFile("./public" + req.url, (err, content) => {
-		if (err) {
-			send(res, 404, "page not found");
-			return;
+		if (!err) {
+			statusCode = 200;
+			message = content;
 		}
-		send(res, 200, content);
+		send(res, statusCode, message);
 	});
 };
 
