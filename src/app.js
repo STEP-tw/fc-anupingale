@@ -1,16 +1,19 @@
 const { readFile } = require("fs");
 
+const send = function(res, statusCode, content) {
+	res.statusCode = statusCode;
+	res.write(content);
+	res.end();
+};
+
 const app = (req, res) => {
-	if (req.url) {
-		readFile("." + req.url, (err, content) => {
-			res.statusCode = 200;
-			res.write(content);
-			res.end();
-		});
-	} else {
-		res.statusCode = 404;
-		res.end();
-	}
+	readFile("./public" + req.url, (err, content) => {
+		if (err) {
+			send(res, 404, "page not found");
+			return;
+		}
+		send(res, 200, content);
+	});
 };
 
 // Export a function that can act as a handler
