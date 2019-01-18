@@ -1,3 +1,14 @@
+const createKeyValuePair = function(data) {
+	let name = data[0][1];
+	let comment = data[1][1];
+	return { name: name, comment: comment, time: new Date().toLocaleString() };
+};
+
+const parseDetails = function(details) {
+	let userData = details.split("&").map(x => x.split("="));
+	return createKeyValuePair(userData);
+};
+
 const createData = function(content) {
 	return "<td>" + content + "</td>";
 };
@@ -20,4 +31,4 @@ const parser = function(content) {
 	);
 };
 
-module.exports = parser;
+module.exports = { parser, parseDetails };
