@@ -64,10 +64,14 @@ app.get("/index.html", readContent);
 app.post("/guest_book.html", writeComment);
 app.get("/homepage.css", readContent);
 app.get("/homepage.js", readContent);
-app.get("/guest_book.css", readContent);
+app.get("/pages.css", readContent);
 app.get("/images/freshorigins.jpg", readContent);
 app.get("/images/animated-flower-image-0021.gif", readContent);
 app.get("/guest_book.html", appendContent);
+app.get("/abeliophyllum.html", readContent);
+app.get("/images/pbase-Abeliophyllum.jpg", readContent);
+app.get("/flowers.css", readContent);
+app.get("/flower_pdf/Abeliophyllum.pdf", readContent);
 app.use(logError);
 // Export a function that can act as a handler
 
