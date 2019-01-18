@@ -2,13 +2,15 @@
 	<head>
 		<title>guest book</title>
 		<link rel="stylesheet" href="guest_book.css" />
+		<script></script>
 	</head>
 	<body>
 		<header><a href="/index.html"><<</a>Guest Book</header>
 		<form method="POST" action="/guest_book.html">
-			Name:<input type="text" /><br />
-			Comment:<textarea></textarea> <br />
+			Name:<input type="text" name="name" /><br />
+			Comment:<textarea name="comment"></textarea> <br />
 			<input type="submit" value="submit" />
 		</form>
+		<div id="comments"></div>
 	</body>
 </html>
