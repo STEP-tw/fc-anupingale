@@ -71,6 +71,9 @@ app.get("/guest_book.html", appendContent);
 app.get("/abeliophyllum.html", readContent);
 app.get("/images/pbase-Abeliophyllum.jpg", readContent);
 app.get("/flowers.css", readContent);
+app.get("/agerantum.html", readContent);
+app.get("/images/pbase-agerantum.jpg", readContent);
+app.get("/flower_pdf/Ageratum.pdf", readContent);
 app.get("/flower_pdf/Abeliophyllum.pdf", readContent);
 app.use(logError);
 // Export a function that can act as a handler
