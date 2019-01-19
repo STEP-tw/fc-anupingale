@@ -4,6 +4,8 @@ const commentDetails = require("../src/user_comments.json");
 const app = new Handler();
 const { readFile, writeFile } = require("fs");
 
+const publicPrefix = req => "./public" + req.url;
+
 const send = function(res, statusCode, content) {
 	res.statusCode = statusCode;
 	res.write(content);
@@ -11,14 +13,14 @@ const send = function(res, statusCode, content) {
 };
 
 const readContent = function(req, res, next) {
-	readFile("./public" + req.url, (err, content) => {
+	readFile(publicPrefix(req), (err, content) => {
 		send(res, 200, content);
 	});
 };
 
 const appendContent = function(req, res, next) {
-	readFile("./public" + req.url, (err, content) => {
-		let comments = parser(JSON.parse(JSON.stringify(commentDetails)));
+	readFile(publicPrefix(req), (err, content) => {
+		let comments = parser(commentDetails);
 		send(res, 200, content + comments);
 	});
 };
@@ -29,12 +31,10 @@ const writeComment = function(req, res, next) {
 		content += chunk;
 	});
 	req.on("end", () => {
-		let details = JSON.parse(JSON.stringify(commentDetails));
-		details.push(parseDetails(content));
-
+		commentDetails.push(parseDetails(content));
 		writeFile(
 			"./src/user_comments.json",
-			JSON.stringify(details),
+			JSON.stringify(commentDetails),
 			"utf8",
 			(err, data) => {
 				if (err) console.log(err);
