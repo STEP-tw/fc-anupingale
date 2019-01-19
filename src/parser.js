@@ -22,9 +22,9 @@ const createTable = function(content) {
 };
 
 const parser = function(content) {
-	headers = "<tr><th>date</th><th>name</th><th>comment</th>";
+	headers = "<tr><th>Date</th><th>Name</th><th>Comment</th>";
 	return (
-		"<table border='solid 1px black'>" +
+		"<table cellspacing='20px'>" +
 		headers +
 		content.map(createTable).join("") +
 		"</table>"
