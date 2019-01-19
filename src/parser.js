@@ -26,7 +26,10 @@ const parser = function(content) {
 	return (
 		"<table cellspacing='20px'>" +
 		headers +
-		content.map(createTable).join("") +
+		content
+			.map(createTable)
+			.reverse()
+			.join("") +
 		"</table>"
 	);
 };
