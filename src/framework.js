@@ -13,7 +13,6 @@ class Handler {
 		let validRoutes = this.routes.filter(x => validateRoutes(req, x));
 		const next = function() {
 			console.log(validRoutes);
-
 			let current = validRoutes.shift();
 			if (!current) return;
 			current.handler(req, res, next);

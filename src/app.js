@@ -14,6 +14,7 @@ const send = function(res, statusCode, content) {
 
 const readContent = function(req, res, next) {
 	readFile(publicPrefix(req), (err, content) => {
+		if (err) send(res, 404, "File Not Found");
 		send(res, 200, content);
 	});
 };
