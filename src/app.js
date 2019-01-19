@@ -27,20 +27,14 @@ const appendContent = function(req, res, next) {
 
 const writeComment = function(req, res, next) {
 	let content = "";
-	req.on("data", chunk => {
-		content += chunk;
-	});
+	req.on("data", chunk => (content += chunk));
 	req.on("end", () => {
 		commentDetails.push(parseDetails(content));
-		writeFile(
-			"./src/user_comments.json",
-			JSON.stringify(commentDetails),
-			"utf8",
-			(err, data) => {
-				if (err) console.log(err);
-				appendContent(req, res);
-			}
-		);
+		let newComments = JSON.stringify(commentDetails);
+		writeFile("./src/user_comments.json", newComments, "utf8", (err, data) => {
+			if (err) console.log(err);
+			appendContent(req, res);
+		});
 	});
 };
 
