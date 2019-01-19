@@ -38,10 +38,6 @@ const writeComment = function(req, res, next) {
 	});
 };
 
-const logError = function(req, res, next) {
-	send(res, 404, "File Not Found");
-};
-
 const readHomeContent = function(req, res, next) {
 	readFile("./public/index.html", (err, content) => {
 		send(res, 200, content);
@@ -49,22 +45,8 @@ const readHomeContent = function(req, res, next) {
 };
 
 app.get("/", readHomeContent);
-app.get("/index.html", readContent);
 app.post("/guest_book.html", writeComment);
-app.get("/homepage.css", readContent);
-app.get("/homepage.js", readContent);
-app.get("/pages.css", readContent);
-app.get("/images/freshorigins.jpg", readContent);
-app.get("/images/animated-flower-image-0021.gif", readContent);
 app.get("/guest_book.html", appendContent);
-app.get("/abeliophyllum.html", readContent);
-app.get("/images/pbase-Abeliophyllum.jpg", readContent);
-app.get("/flowers.css", readContent);
-app.get("/agerantum.html", readContent);
-app.get("/images/pbase-agerantum.jpg", readContent);
-app.get("/flower_pdf/Ageratum.pdf", readContent);
-app.get("/flower_pdf/Abeliophyllum.pdf", readContent);
-app.use(logError);
-// Export a function that can act as a handler
+app.use(readContent);
 
 module.exports = app.handler.bind(app);
