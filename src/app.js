@@ -18,10 +18,8 @@ const readContent = function(req, res, next) {
 
 const appendContent = function(req, res, next) {
 	readFile("./public" + req.url, (err, content) => {
-		readFile("./src/user_comments.json", (err, data) => {
-			let comments = parser(JSON.parse(data));
-			send(res, 200, content + comments);
-		});
+		let comments = parser(JSON.parse(JSON.stringify(commentDetails)));
+		send(res, 200, content + comments);
 	});
 };
 
@@ -31,11 +29,18 @@ const writeComment = function(req, res, next) {
 		content += chunk;
 	});
 	req.on("end", () => {
-		let details = JSON.parse(commentDetails).push(parseDetails(content));
-		writeFile("./src/user_comments.json", details, "utf8", err => {
-			if (err) console.log(err);
-			appendContent(req, res);
-		});
+		let details = JSON.parse(JSON.stringify(commentDetails));
+		details.push(parseDetails(content));
+
+		writeFile(
+			"./src/user_comments.json",
+			JSON.stringify(details),
+			"utf8",
+			(err, data) => {
+				if (err) console.log(err);
+				appendContent(req, res);
+			}
+		);
 	});
 };
 
