@@ -1,6 +1,6 @@
 const createKeyValuePair = function(data) {
-	let name = data[0][1];
-	let comment = data[1][1].replace(/[+]/g, " ");
+	let name = decodeURIComponent(data[0][1]).replace(/[+]/g, " ");
+	let comment = decodeURIComponent(data[1][1]).replace(/[+]/g, " ");
 	return { name: name, comment: comment, time: new Date().toLocaleString() };
 };
 
@@ -25,10 +25,10 @@ const createTable = function(content) {
 const parser = function(content) {
 	headers = "<th>Date</th><th>Name</th><th>Comment</th>";
 	return (
-		"<table cellspacing='20px'>" +
+		"<div class='comments' id='user_comments'><table cellspacing='20px'>" +
 		headers +
 		content.map(createTable).join("") +
-		"</table>"
+		"</table></div>"
 	);
 };
 
