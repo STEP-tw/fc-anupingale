@@ -1,6 +1,10 @@
 const { parser, parseDetails } = require("./parser.js");
 const { Handler } = require("./framework.js");
 const jsonPath = () => "./src/user_comments.json";
+const fileNotFound = () => "File not found";
+const encoding = () => "utf8";
+const homePage = () => "./public/index.html";
+
 const app = new Handler();
 const {
 	readFile,
@@ -15,9 +19,9 @@ let commentDetails;
 
 const read = function(req, res, next) {
 	if (!existsSync(jsonPath())) {
-		writeFileSync(jsonPath(), "[]", "utf8");
+		writeFileSync(jsonPath(), "[]", encoding());
 	}
-	const content = readFileSync(jsonPath(), "utf8");
+	const content = readFileSync(jsonPath(), encoding());
 	commentDetails = JSON.parse(content);
 	next();
 };
@@ -30,7 +34,7 @@ const send = function(res, statusCode, content) {
 
 const readContent = function(req, res) {
 	readFile(publicPrefix(req), (err, content) => {
-		if (err) return send(res, 404, "File Not Found");
+		if (err) return send(res, 404, fileNotFound());
 		send(res, 200, content);
 	});
 };
@@ -48,7 +52,7 @@ const writeComment = function(req, res) {
 	req.on("end", () => {
 		commentDetails.unshift(parseDetails(content));
 		let newComments = JSON.stringify(commentDetails);
-		writeFile(jsonPath(), newComments, "utf8", (err, data) => {
+		writeFile(jsonPath(), newComments, encoding(), (err, data) => {
 			if (err) console.log(err);
 			appendContent(req, res);
 		});
@@ -56,7 +60,7 @@ const writeComment = function(req, res) {
 };
 
 const readHomeContent = function(req, res) {
-	readFile("./public/index.html", (err, content) => {
+	readFile(homePage(), (err, content) => {
 		send(res, 200, content);
 	});
 };
