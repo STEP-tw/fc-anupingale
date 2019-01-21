@@ -1,11 +1,13 @@
 const { parser, parseDetails } = require("./parser.js");
 const { Handler } = require("./framework.js");
-const jsonPath = () => "./src/user_comments.json";
-const fileNotFound = () => "File not found";
-const encoding = () => "utf8";
-const homePage = () => "./public/index.html";
-const defaultComment = () => "[]";
 const app = new Handler();
+const {
+	jsonPath,
+	fileNotFound,
+	encoding,
+	homePage,
+	defaultComment
+} = require("./constants.js");
 const {
 	readFile,
 	writeFile,
