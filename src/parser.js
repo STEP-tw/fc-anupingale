@@ -25,10 +25,10 @@ const createTable = function(content) {
 const parser = function(content) {
 	headers = "<th>Date</th><th>Name</th><th>Comment</th>";
 	return (
-		"<div class='comments' id='user_comments'><table cellspacing='20px'>" +
+		"<table class='comments' id='user_comments' cellspacing='20px'>" +
 		headers +
 		content.map(createTable).join("") +
-		"</table></div>"
+		"</table>"
 	);
 };
 
