@@ -73,8 +73,8 @@ const updateComments = (req, res) => {
 
 app.use(read);
 app.get("/", readHomeContent);
-app.post("/guest_book.html", getComments);
-app.get("/guest_book.html", showComments);
+app.post("/html/guest_book.html", getComments);
+app.get("/html/guest_book.html", showComments);
 app.get("/comments", updateComments);
 app.use(readContent);
 

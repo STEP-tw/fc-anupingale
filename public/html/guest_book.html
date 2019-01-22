@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>Guest book</title>
+		<link rel="stylesheet" href="/css/pages.css" />
+		<script src="/scripts/guest_book.js"></script>
+	</head>
+	<body>
+		<header><a href="/"><<</a>Guest Book</header>
+		<form method="POST" action="/html/guest_book.html">
+			<div>Name:<input type="text" name="name" /><br /></div>
+			<div>Comment:<textarea name="comment"></textarea> <br /></div>
+			<input type="submit" value="submit" />
+		</form>
+		<hr />
+		<h1>Comments</h1>
+		<button onclick="updateComments()">refresh</button>
+	</body>
+</html>
