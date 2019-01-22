@@ -2,11 +2,11 @@ const { parser, parseDetails } = require("./parser.js");
 const { Handler } = require("./framework.js");
 const app = new Handler();
 const {
-	jsonPath,
+	JSONPATH,
 	fileNotFound,
-	encoding,
-	homePage,
-	defaultComment
+	ENCODING,
+	HOMEPAGE,
+	DEFAULTCOMMENT
 } = require("./constants.js");
 const {
 	readFile,
@@ -20,10 +20,10 @@ const publicPrefix = req => "./public" + req.url;
 let user_comments;
 
 const read = function(req, res, next) {
-	if (!existsSync(jsonPath())) {
-		writeFileSync(jsonPath(), defaultComment(), encoding());
+	if (!existsSync(JSONPATH)) {
+		writeFileSync(JSONPATH, DEFAULTCOMMENT, ENCODING);
 	}
-	const content = readFileSync(jsonPath(), encoding());
+	const content = readFileSync(JSONPATH, ENCODING);
 	user_comments = JSON.parse(content);
 	next();
 };
@@ -36,7 +36,7 @@ const send = function(res, content, statusCode = 200) {
 
 const readContent = function(req, res) {
 	readFile(publicPrefix(req), (err, content) => {
-		if (err) return send(res, fileNotFound(), 404);
+		if (err) return send(res, fileNotFound, 404);
 		send(res, content);
 	});
 };
@@ -54,7 +54,7 @@ const getComments = function(req, res) {
 	req.on("end", () => {
 		user_comments.unshift(parseDetails(content));
 		let newComments = JSON.stringify(user_comments);
-		writeFile(jsonPath(), newComments, encoding(), (err, data) => {
+		writeFile(JSONPATH, newComments, ENCODING, (err, data) => {
 			if (err) console.log(err);
 			showComments(req, res);
 		});
@@ -62,7 +62,7 @@ const getComments = function(req, res) {
 };
 
 const readHomeContent = function(req, res) {
-	readFile(homePage(), (err, content) => {
+	readFile(HOMEPAGE, (err, content) => {
 		send(res, content);
 	});
 };
