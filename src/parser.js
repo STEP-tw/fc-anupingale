@@ -1,7 +1,6 @@
 const createKeyValuePair = function(data) {
-	let name = decodeURIComponent(data[0][1]).replace(/[+]/g, " ");
-	let comment = decodeURIComponent(data[1][1]).replace(/[+]/g, " ");
-	return { name: name, comment: comment, time: new Date().toLocaleString() };
+	let comment = decodeURIComponent(data[0][1]).replace(/[+]/g, " ");
+	return { comment: comment, time: new Date().toLocaleString() };
 };
 
 const parseDetails = function(details) {
